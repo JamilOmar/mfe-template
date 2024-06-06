@@ -1,0 +1,14 @@
+{
+  "name": "@axleresearch/main-app",
+  "version": "0.0.1",
+  "type": "commonjs",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/axleresearch/main.git",
+    "directory": "apps/main/app"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  }
+}
