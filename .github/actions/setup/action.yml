@@ -1,0 +1,34 @@
+name: 'Project Setup'
+description: 'Setups the current project for development'
+inputs:
+  branch:
+    description: 'The branch to use'
+    required: true
+  node-version:
+    description: 'The version of node to use'
+    required: true
+  pnpm-version:
+    description: 'The version of pnpm to use'
+    default: 8.15.4
+runs:
+  using: 'composite'
+  steps:
+    - name: Use Node.js ${{ inputs.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ inputs.node-version }}
+        always-auth: true
+        registry-url: https://registry.npmjs.org
+    - uses: pnpm/action-setup@v3.0.0
+      with:
+        version: ${{ inputs.pnpm-version }}
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: Derive appropriate SHAs for base and head for `nx affected` commands
+      uses: nrwl/nx-set-shas@v2
+      with:
+        main-branch-name: ${{ inputs.branch }}
+    - name: Install dependencies
+      run: pnpm install --frozen-lockfile
+      shell: bash

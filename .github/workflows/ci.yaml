@@ -1,0 +1,67 @@
+name: CI Workflow
+on:
+  push:
+    branches:
+      - '!main'
+  pull_request:
+    branches:
+      - 'main'
+env:
+  HUSKY: 0
+  NODE_VER: 18
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ github.workspace }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Project Setup
+        id: setup-action
+        uses: ./.github/actions/setup
+        with:
+          branch: 'main'
+          node-version: ${{ env.NODE_VER }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run Build
+        run: |
+          pnpm nx affected --target=build --parallel=3
+
+  tests:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ github.workspace }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Project Setup
+        id: setup-action
+        uses: ./.github/actions/setup
+        with:
+          branch: 'main'
+          node-version: ${{ env.NODE_VER }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run tests and lint
+        run: pnpm nx run-many --all --target=test --coverage --updateSnapshot --ci --parallel=3 --projects=tag:core
+
+      - uses: codecov/codecov-action@v4.0.1
+        with:
+          fail_ci_if_error: true
+          verbose: true
+          token: ${{ secrets.CODECOV_TOKEN }}
+          slug: axleresearch/main
+          directory: ./coverage/apps/
