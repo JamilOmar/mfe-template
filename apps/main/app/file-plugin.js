@@ -22,6 +22,8 @@ class FilePlugin {
           name: pluginName,
           stage: Compilation.PROCESS_ASSETS_STAGE_SUMMARIZE,
         },
+
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         (assets) => {
           compilation.emitAsset(
             this.options.outputFile,

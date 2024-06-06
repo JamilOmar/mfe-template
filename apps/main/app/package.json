@@ -1,11 +1,11 @@
 {
-  "name": "@axleresearch/main-app",
-  "version": "0.0.1",
+  "name": "@axleresearch/demo-app",
+  "version": "1.0.4",
   "type": "commonjs",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/axleresearch/main.git",
+    "url": "https://github.com/axleresearch/demo.git",
     "directory": "apps/main/app"
   },
   "publishConfig": {

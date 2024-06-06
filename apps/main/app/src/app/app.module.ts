@@ -1,32 +1,14 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { AppComponent } from './app.component';
-import { NxWelcomeComponent } from './nx-welcome.component';
 import { RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { AppComponent } from './app.component';
+import { appRoutes } from './app.routes';
+import { NxWelcomeComponent } from './nx-welcome.component';
 
 @NgModule({
   declarations: [AppComponent, NxWelcomeComponent],
-  imports: [
-    BrowserModule,
-    CommonModule,
-    RouterModule.forRoot(
-      [
-        {
-          path: 'remote',
-          loadChildren: () =>
-            import('./remote-entry/entry.module').then(
-              (m) => m.RemoteEntryModule
-            ),
-        },
-        {
-          path: '',
-          component: NxWelcomeComponent,
-        },
-      ],
-      { initialNavigation: 'enabledBlocking' }
-    ),
-  ],
+  imports: [BrowserModule, RouterModule.forRoot(appRoutes)],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -768,6 +768,10 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
               </svg>
               Add UI library
             </summary>
+            <pre><span># Generate UI lib</span>
+
+<span># Add a component</span>
+</pre>
           </details>
           <details>
             <summary>
