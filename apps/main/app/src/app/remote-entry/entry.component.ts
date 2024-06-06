@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-
 @Component({
   selector: 'app-entry',
   template: `<demo-nx-welcome></demo-nx-welcome>`,

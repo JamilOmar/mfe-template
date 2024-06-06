@@ -15,9 +15,7 @@
         "main": "apps/main/app/src/main.ts",
         "tsConfig": "apps/main/app/tsconfig.app.json",
         "assets": ["apps/main/app/src/favicon.ico", "apps/main/app/src/assets"],
-        "styles": [
-          "apps/main/app/src/styles.scss"
-          ],
+        "styles": ["apps/main/app/src/styles.scss"],
         "scripts": [],
         "customWebpackConfig": {
           "path": "apps/main/app/webpack.config.ts"
@@ -39,7 +37,7 @@
           ],
           "outputHashing": "all",
           "customWebpackConfig": {
-            "path": "apps/main/app/webpack.prod.config.js"
+            "path": "apps/main/app/webpack.prod.config.ts"
           }
         },
         "development": {
@@ -72,30 +70,17 @@
       }
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": ["apps/main/app/**/*.ts", "apps/main/app/**/*.html"]
       }
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/main/app"],
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
       "options": {
-        "jestConfig": "apps/main/app/jest.config.ts",
-        "passWithNoTests": true
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
-      }
-    },
-    "serve-static": {
-      "executor": "@nrwl/web:file-server",
-      "options": {
-        "buildTarget": "main-app:build"
+        "jestConfig": "apps/main/app/jest.config.ts"
       }
     },
     "set-version": {
