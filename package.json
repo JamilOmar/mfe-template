@@ -9,7 +9,6 @@
     "build": "nx build",
     "test": "nx test",
     "release:ci": "changeset publish",
-    "postinstall": "ngcc --properties es2020 browser module main",
     "set-versions": "nx affected --target=set-version --output-style=stream",
     "set-version:main-api": "echo $(cat ./apps/main/api/package.json | jq -r '.version' ) > MAIN_API_VERSION",
     "set-version:main-app": "echo $(cat ./apps/main/app/package.json | jq -r '.version' ) > MAIN_APP_VERSION",

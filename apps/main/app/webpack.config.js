@@ -1,6 +1,7 @@
 const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
 const mf = require('@angular-architects/module-federation/webpack');
 const share = mf.share;
+const shareAll = mf.shareAll;
 const sharedMappings = new mf.SharedMappings();
 const configuration = require('./app.config.js');
 const pkgJson = require('./package.json');
@@ -41,6 +42,30 @@ module.exports = {
           'apps/main/app/src/app/remote-entry/entry.module.ts',
       },
       shared: share({
+        '@angular/core': {
+          singleton: true,
+          strictVersion: true,
+          requiredVersion: 'auto',
+          eager: true,
+        },
+        '@angular/common': {
+          singleton: true,
+          strictVersion: true,
+          requiredVersion: 'auto',
+          eager: true,
+        },
+        '@angular/common/http': {
+          singleton: true,
+          strictVersion: true,
+          requiredVersion: 'auto',
+          eager: true,
+        },
+        '@angular/router': {
+          singleton: true,
+          strictVersion: true,
+          requiredVersion: 'auto',
+          eager: true,
+        },
         ...sharedMappings.getDescriptors(),
       }),
     }),

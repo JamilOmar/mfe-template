@@ -56,7 +56,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Run tests and lint
-        run: pnpm nx run-many --all --target=test --coverage --updateSnapshot --ci --parallel=3 --projects=tag:core
+        run: pnpm nx run-many --all --target=test --coverage --updateSnapshot --ci --parallel=3
 
       - uses: codecov/codecov-action@v4.0.1
         with:
