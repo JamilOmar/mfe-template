@@ -1,11 +1,26 @@
 import { Route } from '@angular/router';
 import { NxWelcomeComponent } from './nx-welcome.component';
 import { loadRemoteModule } from '@angular-architects/module-federation';
+import {
+  WebComponentWrapper,
+  WebComponentWrapperOptions,
+} from '@angular-architects/module-federation-tools';
 export const appRoutes: Route[] = [
   {
     path: 'remote',
     loadChildren: () =>
       import('./remote-entry/entry.module').then((m) => m.RemoteEntryModule),
+  },
+  {
+    path: 'react',
+    component: WebComponentWrapper,
+    data: {
+      type: 'script',
+      remoteEntry: 'http://localhost:4202/remoteEntry.js',
+      remoteName: 'reactChild',
+      exposedModule: './web-components',
+      elementName: 'child-react-element',
+    } as WebComponentWrapperOptions,
   },
   {
     path: 'external',
