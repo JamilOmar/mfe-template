@@ -1,5 +1,6 @@
 {
   "name": "@axleresearch/main-api",
+  "description": "Main Api ",
   "version": "0.0.1",
   "type": "commonjs",
   "private": true,

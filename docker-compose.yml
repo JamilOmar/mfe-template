@@ -1,0 +1,34 @@
+version: "3.4"
+services:
+  "main-api":
+    container_name: main-api
+    build:
+      context: .
+      dockerfile: ./apps/main/api/DockerFile.dev
+    depends_on:
+      "main-api-db":
+        condition: service_started
+
+    environment:
+      - API_DB_URL=mongodb://main-api-db:${DB_PORT:-27017}/mfe-configuration
+      - PORT=8080
+    ports:
+      - '${PORT:-8080}:8080'
+    volumes:
+      - ./apps/main/api:/usr/src/apps/main/api
+  "main-api-db":
+    image: mongo:4.2
+    container_name: main-api-db
+    ports:
+      - ${DB_PORT:-27017}:27017
+    volumes:
+      - ./.db/main-data:/data/db
+  "main-app":
+    container_name: main-app
+    build:
+      context: .
+      dockerfile: ./apps/main/app/DockerFile.dev
+    ports:
+      - '4200:4200'
+    volumes:
+      - ./apps/main/app:/usr/src/apps/main/app

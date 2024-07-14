@@ -1,7 +1,7 @@
 # Build Stage 1
 # This build created a staging docker image
 #
-FROM node:16 AS appbuild
+FROM node:18 AS appbuild
 ARG SOURCE_FOLDER="./"
 ARG GITHUB_TOKEN
 WORKDIR /usr/src

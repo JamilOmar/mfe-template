@@ -1,0 +1,13 @@
+
+FROM node:18-alpine AS appbuild
+ARG SOURCE_FOLDER="./"
+WORKDIR /usr/src
+
+RUN npm install -g pnpm@8
+COPY ${SOURCE_FOLDER}pnpm-lock.yaml .
+COPY ${SOURCE_FOLDER}pnpm-workspace.yaml .
+COPY ${SOURCE_FOLDER}package.json .
+COPY ${SOURCE_FOLDER}.npmrc .
+COPY ${SOURCE_FOLDER} .
+RUN pnpm install --frozen-lockfile
+CMD pnpm nx run main-app:serve --host 0.0.0.0 --disableHostCheck
