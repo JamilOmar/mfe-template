@@ -22,8 +22,12 @@
             "input": "apps/main/app/public"
           }
         ],
-        "styles": ["apps/main/app/src/styles.scss"],
-        "scripts": [],
+        "styles": [
+          "node_modules/bootstrap/scss/bootstrap.scss",
+          "node_modules/bootstrap-icons/font/bootstrap-icons.css",
+          "apps/main/app/src/styles.scss"
+        ],
+        "scripts": ["node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"],
         "customWebpackConfig": {
           "path": "apps/main/app/webpack.config.js"
         }
