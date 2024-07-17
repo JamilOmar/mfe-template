@@ -9,6 +9,7 @@ export class CreateMFEConfigurationDto {
   @IsString()
   @IsNotEmpty()
   code: string;
+
   @ApiProperty({
     example: 'Login Module Name',
     description: 'The name to be displayed',
@@ -41,6 +42,7 @@ export class CreateMFEConfigurationDto {
   @IsNotEmpty()
   url: string;
 
+  /*
   @ApiProperty({
     example: { api: 'http://my-api' },
     description: 'Configuration options of the module',
@@ -48,13 +50,20 @@ export class CreateMFEConfigurationDto {
   @IsObject()
   @IsNotEmpty()
   configuration: object;
-
+*/
   @ApiProperty({
     example: 'Login Menu',
     description: 'The label to show in links',
   })
   @IsString()
   label: string;
+
+  @ApiProperty({
+    example: 'This is an item',
+    description: 'The description of the configuration',
+  })
+  @IsString()
+  description: string;
 
   @ApiProperty({
     example: 'CatalogModule',

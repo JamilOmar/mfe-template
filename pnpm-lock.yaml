@@ -59,6 +59,12 @@ importers:
       '@ng-bootstrap/ng-bootstrap':
         specifier: 16.0.0-rc.2
         version: 16.0.0-rc.2(@angular/common@18.0.7)(@angular/core@18.0.7)(@angular/forms@18.0.7)(@angular/localize@17.3.11)(@popperjs/core@2.11.8)(rxjs@7.8.1)
+      ag-grid-angular:
+        specifier: ^32.0.2
+        version: 32.0.2(@angular/common@18.0.7)(@angular/core@18.0.7)(ag-grid-community@32.0.2)
+      ag-grid-community:
+        specifier: ^32.0.2
+        version: 32.0.2
       axios:
         specifier: ^1.6.0
         version: 1.7.2
@@ -6833,6 +6839,29 @@ packages:
       loader-utils: 2.0.4
       regex-parser: 2.3.0
     dev: true
+
+  /ag-charts-types@10.0.2:
+    resolution: {integrity: sha512-Nxo5slHOXlaeg0gRIsVnovAosQzzlYfWJtdDy0Aq/VvpJru/PJ+5i2c9aCyEhgRxhBjImsoegwkgRj7gNOWV6Q==}
+    dev: false
+
+  /ag-grid-angular@32.0.2(@angular/common@18.0.7)(@angular/core@18.0.7)(ag-grid-community@32.0.2):
+    resolution: {integrity: sha512-GU9m0hCgBK6DqrXJ2R8r1Vm+CutCUbgrEXtsQPWlQh9AipW9khvbMF0NzuAYpZrGnk8KI9E9+jhzWhT4ZWLOTw==}
+    peerDependencies:
+      '@angular/common': '>= 16.0.0'
+      '@angular/core': '>= 16.0.0'
+      ag-grid-community: 32.0.2
+    dependencies:
+      '@angular/common': 18.0.7(@angular/core@18.0.7)(rxjs@7.8.1)
+      '@angular/core': 18.0.7(rxjs@7.8.1)(zone.js@0.14.7)
+      ag-grid-community: 32.0.2
+      tslib: 2.6.3
+    dev: false
+
+  /ag-grid-community@32.0.2:
+    resolution: {integrity: sha512-vLJJUjnsG9hNK41GNuW2EHu1W264kxA/poOpcX4kmyrjU5Uzvelsbj3HdKAO9POV28iqyRdKGYfAWdn8QzA7KA==}
+    dependencies:
+      ag-charts-types: 10.0.2
+    dev: false
 
   /agent-base@6.0.2:
     resolution: {integrity: sha512-RZNwNclF7+MS/8bDg70amg32dyeZGZxiDuQmZxKLAlQjr3jGyLx+4Kkk58UO7D2QdgFIQCovuSuZESne6RG6XQ==}

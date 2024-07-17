@@ -23,10 +23,11 @@ export class MFEConfigurationRepository {
   update(
     code: string,
     updateRemoteModuleDto: UpdateMFEConfigurationDto
-  ): Promise<MFEConfiguration> {
-    return this.mfeConfigurationModel
-      .findByIdAndUpdate({ code }, updateRemoteModuleDto, { new: true })
+  ): Promise<void> {
+    this.mfeConfigurationModel
+      .updateOne({ code }, updateRemoteModuleDto, { new: true })
       .exec();
+    return;
   }
   async remove(code: string) {
     return this.mfeConfigurationModel.findOneAndDelete({ code }).exec();

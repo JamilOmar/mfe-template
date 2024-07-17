@@ -12,9 +12,6 @@ export class MFEConfiguration extends Document {
   route: string;
 
   @Prop({ required: true })
-  icon: string;
-
-  @Prop({ required: true })
   description: string;
 
   @Prop({ required: true })
@@ -28,6 +25,9 @@ export class MFEConfiguration extends Document {
 
   @Prop({ required: true })
   name: string;
+
+  @Prop({ required: true })
+  label: string;
 
   @Prop({ required: true })
   moduleClass: string;

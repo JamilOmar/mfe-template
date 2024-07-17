@@ -1,0 +1,176 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" (click)="onOpen()">
+  Add New App
+</button>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Editing Configuration</h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <form (ngSubmit)="onSubmit()" #mfeConfigurationForm="ngForm">
+      <div class="form-group">
+        <label for="code">Code</label>
+        <input
+          type="text"
+          class="form-control"
+          id="code"
+          [(ngModel)]="selectedItem.code"
+          name="code"
+          #code="ngModel"
+          required
+        />
+        <div [hidden]="code.valid || code.pristine" class="alert alert-danger">
+          Code is required
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          [(ngModel)]="selectedItem.name"
+          name="name"
+          #name="ngModel"
+          required
+        />
+        <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+          Name is required
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="route">Route</label>
+        <input
+          type="text"
+          class="form-control"
+          id="route"
+          [(ngModel)]="selectedItem.route"
+          name="route"
+          #route="ngModel"
+          required
+        />
+        <div
+          [hidden]="route.valid || route.pristine"
+          class="alert alert-danger"
+        >
+          Route is required
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <input
+          type="text"
+          class="form-control"
+          id="description"
+          [(ngModel)]="selectedItem.description"
+          name="description"
+          #description="ngModel"
+          required
+        />
+        <div
+          [hidden]="description.valid || description.pristine"
+          class="alert alert-danger"
+        >
+          Description is required
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="module">Module</label>
+        <input
+          type="text"
+          class="form-control"
+          id="module"
+          [(ngModel)]="selectedItem.module"
+          name="module"
+          #module="ngModel"
+          required
+        />
+        <div
+          [hidden]="module.valid || module.pristine"
+          class="alert alert-danger"
+        >
+          Module is required
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="url">Url</label>
+        <input
+          type="text"
+          class="form-control"
+          id="url"
+          [(ngModel)]="selectedItem.url"
+          name="url"
+          #url="ngModel"
+          required
+        />
+        <div [hidden]="url.valid || url.pristine" class="alert alert-danger">
+          Url is required
+        </div>
+      </div>
+      <!--   <div class="form-group">
+          <label for="configuration">Configuration</label>
+          <input type="text" class="form-control" id="configuration" [(ngModel)]="selectedItem.configuration" name="configuration">
+        </div> -->
+      <div class="form-group">
+        <label for="label">Label For Link</label>
+        <input
+          type="text"
+          class="form-control"
+          id="label"
+          [(ngModel)]="selectedItem.label"
+          name="label"
+          #label="ngModel"
+          required
+        />
+        <div
+          [hidden]="label.valid || label.pristine"
+          class="alert alert-danger"
+        >
+          Label is required
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="moduleClass">ModuleClass</label>
+        <input
+          type="text"
+          class="form-control"
+          id="moduleClass"
+          [(ngModel)]="selectedItem.moduleClass"
+          name="moduleClass"
+          #moduleClass="ngModel"
+          required
+        />
+        <div
+          [hidden]="moduleClass.valid || moduleClass.pristine"
+          class="alert alert-danger"
+        >
+          Module Class is required
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="submit"
+          class="btn btn-outline-secondary"
+          [disabled]="!mfeConfigurationForm.valid"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+<!-- ag-Grid -->
+<ag-grid-angular
+  class="ag-theme-alpine"
+  style="height: 200px; width: 100%"
+  [rowData]="rowData"
+  [columnDefs]="columnDefs"
+/>

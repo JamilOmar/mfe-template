@@ -12,6 +12,13 @@ export const appRoutes: Route[] = [
       import('./remote-entry/entry.module').then((m) => m.RemoteEntryModule),
   },
   {
+    path: 'mfe-configuration',
+    loadChildren: () =>
+      import('./mfe-configuration/mfe-configuration.module').then(
+        (m) => m.MFEConfigurationModule
+      ),
+  },
+  {
     path: 'react',
     component: WebComponentWrapper,
     data: {

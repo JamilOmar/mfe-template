@@ -12,6 +12,7 @@
       "options": {
         "target": "node",
         "compiler": "tsc",
+        "poll": 500,
         "outputPath": "dist/apps/main/api",
         "main": "apps/main/api/src/main.ts",
         "tsConfig": "apps/main/api/tsconfig.app.json",

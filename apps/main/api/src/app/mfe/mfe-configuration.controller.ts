@@ -18,7 +18,7 @@ const MFE_NOT_FOUND_ERROR = 'MFE Configuration not found;';
 const MFE_CREATED = 'Returns the MFE Configuration created';
 const MFE_SUCCEES = 'MFE Configuration operation succeed';
 const MFE_INVALID = 'Bad request/invalid MFE Configuration';
-@Controller()
+@Controller('administration/app')
 export class MFEConfigurationController {
   constructor(
     private readonly mfeConfigurationService: MFEConfigurationService
@@ -67,11 +67,11 @@ export class MFEConfigurationController {
   })
   @ApiResponse({ status: 404, description: MFE_NOT_FOUND_ERROR })
   @Patch(':code')
-  update(
+  async update(
     @Param('code') code: string,
     @Body() updateRemoteModuleDto: UpdateMFEConfigurationDto
   ) {
-    return this.mfeConfigurationService.update(code, updateRemoteModuleDto);
+    await this.mfeConfigurationService.update(code, updateRemoteModuleDto);
   }
 
   @ApiResponse({

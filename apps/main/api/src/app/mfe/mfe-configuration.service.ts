@@ -14,7 +14,8 @@ export class MFEConfigurationService {
   async create(
     createRemoteModuleDto: CreateMFEConfigurationDto
   ): Promise<MFEConfiguration> {
-    if (this.exists(createRemoteModuleDto.code)) {
+    const exists = await this.exists(createRemoteModuleDto.code);
+    if (exists) {
       throw new Error(MFE_ALREADY_EXISTS_ERROR);
     }
     return this.mfeConfigurationRepository.create(createRemoteModuleDto);
@@ -24,17 +25,19 @@ export class MFEConfigurationService {
     return this.mfeConfigurationRepository.findAll();
   }
 
-  update(
+  async update(
     code: string,
     updateRemoteModuleDto: UpdateMFEConfigurationDto
-  ): Promise<MFEConfiguration> {
-    if (!this.exists(code)) {
+  ): Promise<void> {
+    const exists = await this.exists(code);
+    if (!exists) {
       throw new Error(MFE_NOT_FOUND_ERROR);
     }
-    return this.mfeConfigurationRepository.update(code, updateRemoteModuleDto);
+    await this.mfeConfigurationRepository.update(code, updateRemoteModuleDto);
   }
   async remove(code: string) {
-    if (!this.exists(code)) {
+    const exists = await this.exists(code);
+    if (!exists) {
       throw new Error(MFE_NOT_FOUND_ERROR);
     }
     return this.mfeConfigurationRepository.remove(code);
@@ -44,6 +47,7 @@ export class MFEConfigurationService {
     return this.mfeConfigurationRepository.findOne(code);
   }
   async exists(code: string) {
-    return (await this.mfeConfigurationRepository.findOne(code)) != null;
+    const data = await this.mfeConfigurationRepository.findOne(code);
+    return data != null;
   }
 }
