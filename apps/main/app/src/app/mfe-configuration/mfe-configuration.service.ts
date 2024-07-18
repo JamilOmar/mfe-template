@@ -22,7 +22,7 @@ export class MFEConfigurationService {
   private readonly resourceEndpoint: string;
 
   constructor(protected httpClient: HttpClient) {
-    this.baseUrl = 'http://localhost:8080/api';
+    this.baseUrl = 'http://localhost:3333/api';
     this.resourceEndpoint = RESOURCE_ENDPOINT;
   }
 

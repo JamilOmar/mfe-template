@@ -4,15 +4,13 @@ import { RouterModule } from '@angular/router';
 import { AgGridModule } from 'ag-grid-angular';
 import { FormsModule } from '@angular/forms';
 import { MFEConfigurationComponent } from './mfe-configuration.component';
-import { ButtonRendererComponent } from './button-renderer-component';
 
 @NgModule({
-  declarations: [MFEConfigurationComponent, ButtonRendererComponent],
+  declarations: [MFEConfigurationComponent],
   imports: [
     CommonModule,
     AgGridModule,
     FormsModule,
-
     RouterModule.forChild([
       {
         path: '',
