@@ -7,57 +7,53 @@ import {
   ServiceConfig,
   UpdateMFEConfigurationDto,
 } from './types';
+import { ConfigVars, RemoteModulesEndpoint } from '../utils/constants';
+import { ConfigService } from '@axleresearch/base-ui';
 
 export const SERVICE_CONFIG = new InjectionToken<ServiceConfig>(
   'ServiceConfig'
 );
 
-const RESOURCE_ENDPOINT = '/administration/app';
-
 @Injectable({
   providedIn: 'root',
 })
 export class MFEConfigurationService {
-  private readonly baseUrl: string;
-  private readonly resourceEndpoint: string;
+  private readonly serviceUrl: string;
 
-  constructor(protected httpClient: HttpClient) {
-    this.baseUrl = 'http://localhost:3333/api';
-    this.resourceEndpoint = RESOURCE_ENDPOINT;
+  constructor(
+    private configService: ConfigService,
+    protected httpClient: HttpClient
+  ) {
+    this.serviceUrl = `${configService.get(
+      ConfigVars.apiUrl
+    )}${RemoteModulesEndpoint}`;
   }
 
   create(createRemoteModuleDto: CreateMFEConfigurationDto) {
     return this.httpClient.post<MFEConfiguration>(
-      `${this.baseUrl}${this.resourceEndpoint}`,
+      this.serviceUrl,
       createRemoteModuleDto
     );
   }
 
   findAll() {
-    return this.httpClient.get<MFEConfiguration[]>(
-      `${this.baseUrl}${this.resourceEndpoint}`
-    );
+    return this.httpClient.get<MFEConfiguration[]>(this.serviceUrl);
   }
 
   update(
     code: string | undefined,
     updateRemoteModuleDto: UpdateMFEConfigurationDto
   ) {
-    console.log(updateRemoteModuleDto);
     return this.httpClient.patch<MFEConfiguration>(
-      `${this.baseUrl}${this.resourceEndpoint}/${code}`,
+      `${this.serviceUrl}/${code}`,
       updateRemoteModuleDto
     );
   }
   remove(code: string) {
-    return this.httpClient.delete<number>(
-      `${this.baseUrl}${this.resourceEndpoint}/${code}`
-    );
+    return this.httpClient.delete<number>(`${this.serviceUrl}/${code}`);
   }
 
   findOne(code: string) {
-    return this.httpClient.get<MFEConfiguration>(
-      `${this.baseUrl}${this.resourceEndpoint}/${code}`
-    );
+    return this.httpClient.get<MFEConfiguration>(`${this.serviceUrl}/${code}`);
   }
 }

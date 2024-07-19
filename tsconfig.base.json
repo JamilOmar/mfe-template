@@ -15,6 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@axleresearch/base-ui": [
+        "libs/base-ui/src/index.ts"
+      ],
       "@main/common": ["libs/common/src/index.ts"]
     }
   },

@@ -18,7 +18,7 @@ const MFE_NOT_FOUND_ERROR = 'MFE Configuration not found;';
 const MFE_CREATED = 'Returns the MFE Configuration created';
 const MFE_SUCCEES = 'MFE Configuration operation succeed';
 const MFE_INVALID = 'Bad request/invalid MFE Configuration';
-@Controller('administration/app')
+@Controller('administration/modules')
 export class MFEConfigurationController {
   constructor(
     private readonly mfeConfigurationService: MFEConfigurationService
