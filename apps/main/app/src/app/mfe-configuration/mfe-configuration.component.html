@@ -114,15 +114,16 @@
           Url is required
         </div>
       </div>
-      <!-- <div class="form-group">
+      <div class="form-group">
         <label for="configuration">Configuration</label>
-        <ace-editor
-          [(text)]="selectedItem.configuration"
-          mode="json"
-          style="height: 400px"
-        ></ace-editor>
-      </div> -->
-      -
+        <json-editor
+          [options]="editorOptions"
+          name="configuration"
+          id="configuration"
+          [(ngModel)]="selectedItem.configuration"
+          #configuration
+        ></json-editor>
+      </div>
       <div class="form-group">
         <label for="label">Label For Link</label>
         <input

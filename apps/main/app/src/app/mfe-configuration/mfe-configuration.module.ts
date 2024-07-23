@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { AgGridModule } from 'ag-grid-angular';
 import { FormsModule } from '@angular/forms';
 import { MFEConfigurationComponent } from './mfe-configuration.component';
-
+import { NgJsonEditorModule } from 'ang-jsoneditor';
 @NgModule({
   declarations: [MFEConfigurationComponent],
   imports: [
@@ -17,6 +17,7 @@ import { MFEConfigurationComponent } from './mfe-configuration.component';
         component: MFEConfigurationComponent,
       },
     ]),
+    NgJsonEditorModule,
   ],
   providers: [],
 })

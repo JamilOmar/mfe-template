@@ -12,6 +12,7 @@ import { ApiResponse } from '@nestjs/swagger';
 import { CreateMFEConfigurationDto } from './dto/create-mfe-configuration-dto';
 import { MFEConfiguration } from './mfe-configuration.schema';
 import { UpdateMFEConfigurationDto } from './dto/update-mfe-configuration-dto';
+import { MFEConfigurationPresenter } from './presenter/mfe-configuration.presenter';
 
 const MFE_ALREADY_EXISTS_ERROR = 'MFE Configuration already exists';
 const MFE_NOT_FOUND_ERROR = 'MFE Configuration not found;';
@@ -34,8 +35,13 @@ export class MFEConfigurationController {
   })
   @ApiResponse({ status: 422, description: MFE_ALREADY_EXISTS_ERROR })
   @Post()
-  create(@Body() createMFEConfigurationDto: CreateMFEConfigurationDto) {
-    return this.mfeConfigurationService.create(createMFEConfigurationDto);
+  async create(
+    @Body() createMFEConfigurationDto: CreateMFEConfigurationDto
+  ): Promise<MFEConfigurationPresenter> {
+    const data = await this.mfeConfigurationService.create(
+      createMFEConfigurationDto
+    );
+    return new MFEConfigurationPresenter(data);
   }
 
   @Get()
@@ -45,8 +51,9 @@ export class MFEConfigurationController {
     type: MFEConfiguration,
     isArray: true,
   })
-  async findAll() {
-    return this.mfeConfigurationService.findAll();
+  async findAll(): Promise<MFEConfigurationPresenter[]> {
+    const data = await this.mfeConfigurationService.findAll();
+    return data.map((x) => new MFEConfigurationPresenter(x));
   }
 
   @ApiResponse({
@@ -56,8 +63,11 @@ export class MFEConfigurationController {
   })
   @ApiResponse({ status: 404, description: MFE_NOT_FOUND_ERROR })
   @Get(':code')
-  async findOne(@Param('code') code: string) {
-    return this.mfeConfigurationService.findOne(code);
+  async findOne(
+    @Param('code') code: string
+  ): Promise<MFEConfigurationPresenter> {
+    const data = await this.mfeConfigurationService.findOne(code);
+    return new MFEConfigurationPresenter(data);
   }
 
   @ApiResponse({
@@ -70,7 +80,7 @@ export class MFEConfigurationController {
   async update(
     @Param('code') code: string,
     @Body() updateRemoteModuleDto: UpdateMFEConfigurationDto
-  ) {
+  ): Promise<void> {
     await this.mfeConfigurationService.update(code, updateRemoteModuleDto);
   }
 
@@ -80,7 +90,7 @@ export class MFEConfigurationController {
     type: UpdateMFEConfigurationDto,
   })
   @Delete(':code')
-  remove(@Param('code') code: string) {
-    return this.mfeConfigurationService.remove(code);
+  async remove(@Param('code') code: string): Promise<void> {
+    await this.mfeConfigurationService.remove(code);
   }
 }

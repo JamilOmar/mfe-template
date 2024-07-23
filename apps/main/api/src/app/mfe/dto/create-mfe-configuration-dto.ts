@@ -42,15 +42,14 @@ export class CreateMFEConfigurationDto {
   @IsNotEmpty()
   url: string;
 
-  /*
   @ApiProperty({
     example: { api: 'http://my-api' },
     description: 'Configuration options of the module',
+    default: {},
   })
   @IsObject()
-  @IsNotEmpty()
   configuration: object;
-*/
+
   @ApiProperty({
     example: 'Login Menu',
     description: 'The label to show in links',
