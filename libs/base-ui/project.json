@@ -2,12 +2,12 @@
   "name": "base-ui",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/base-ui/src",
-  "prefix": "smart-irb",
+  "prefix": "base-ui",
   "tags": [],
   "projectType": "library",
   "targets": {
     "build": {
-      "executor": "@nx/js:tsc",
+      "executor": "@nx/angular:package",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/libs/base-ui",

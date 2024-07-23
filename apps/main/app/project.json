@@ -16,6 +16,12 @@
         "polyfills": ["zone.js"],
         "tsConfig": "apps/main/app/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
+        "allowedCommonJsDependencies": [
+          "@angular-architects/module-federation",
+          "lodash",
+          "jsoneditor",
+          "immutable-rxjs"
+        ],
         "assets": [
           {
             "glob": "**/*",

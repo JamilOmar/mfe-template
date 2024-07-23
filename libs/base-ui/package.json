@@ -1,14 +1,13 @@
 {
   "name": "@axleresearch/base-ui",
   "version": "0.0.1",
-  "private": true,
   "peerDependencies": {
-    "@angular/common": "14.x",
-    "@angular/core": "14.x",
+    "@angular/common": "18.x",
+    "@angular/core": "18.x",
     "immutable": "4.x",
     "immutable-rxjs": "^1.0.2",
     "lodash": "4.x",
-    "rxjs": "^6.5.x || ^7.4.x"
+    "rxjs": "^7.8.x"
   },
   "dependencies": {
     "tslib": "^2.3.0"
