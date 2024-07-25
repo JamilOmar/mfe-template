@@ -6,7 +6,7 @@ module.exports = {
       process.env['APP_AUTH_API_URL_AUTHORITY'] ||
       'https://a-qa.ncats.io/_api/auth/hits_ci',
     redirectUrl:
-      process.env['APP_AUTH_REDIRECT_URL'] || 'https://local.mylocal.org:4200',
+      process.env['APP_AUTH_REDIRECT_URL'] || 'https://localhost:4200',
     postLogoutRedirectUri:
       process.env['APP_AUTH_POST_LOGOUT_REDIRECT_URL'] ||
       'https://local.mylocal.org:4200',

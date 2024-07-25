@@ -4,3 +4,4 @@ export const ConfigVars = {
 };
 export const RemoteModulesEndpoint = 'administration/modules';
 export const ConfigEndpoint = 'config';
+export const ConfigurationFile = 'app.json';
