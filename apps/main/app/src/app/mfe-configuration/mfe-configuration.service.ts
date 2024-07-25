@@ -6,7 +6,7 @@ import {
   MFEConfiguration,
   ServiceConfig,
   UpdateMFEConfigurationDto,
-} from './types';
+} from '../types';
 import { ConfigVars, RemoteModulesEndpoint } from '../utils/constants';
 import { ConfigService } from '@axleresearch/base-ui';
 

@@ -3,7 +3,7 @@
 import { Component } from '@angular/core';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
 import { ICellRendererParams } from 'ag-grid-community';
-import { GridEventParams, MFEConfiguration } from './types';
+import { GridEventParams, MFEConfiguration } from '../types';
 
 @Component({
   selector: 'app-button-renderer',

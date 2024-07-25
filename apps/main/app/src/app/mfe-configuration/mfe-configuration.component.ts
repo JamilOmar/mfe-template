@@ -10,7 +10,7 @@ import {
   GridEventParams,
   MFEConfiguration,
   UpdateMFEConfigurationDto,
-} from './types';
+} from '../types';
 
 @Component({
   selector: 'app-mfe-configuration',

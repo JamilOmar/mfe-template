@@ -5,6 +5,7 @@ import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import configuration from './../config/configuration';
 import { MFEConfigurationModule } from './mfe/mfe-configuration.module';
+import { AuthApiModule } from '@axleresearch/auth-api';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -20,6 +21,11 @@ import { MFEConfigurationModule } from './mfe/mfe-configuration.module';
       inject: [ConfigService],
     }),
     MFEConfigurationModule,
+    AuthApiModule.forRootAsync({
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) =>
+        configService.get('auth.credentials'),
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],

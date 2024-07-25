@@ -7,6 +7,7 @@ import { NxWelcomeComponent } from './nx-welcome.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BaseUIModule, ConfigService } from '@axleresearch/base-ui';
 import { initializer } from './app.initializer';
+import { AuthConfigModule } from './auth/auth-config.module';
 
 @NgModule({
   declarations: [AppComponent, NxWelcomeComponent],
@@ -15,6 +16,7 @@ import { initializer } from './app.initializer';
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
     BaseUIModule.forRoot(),
+    AuthConfigModule,
   ],
   providers: [
     {

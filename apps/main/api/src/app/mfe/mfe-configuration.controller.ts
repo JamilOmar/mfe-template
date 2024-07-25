@@ -6,13 +6,15 @@ import {
   Param,
   Patch,
   Post,
+  UseGuards,
 } from '@nestjs/common';
 import { MFEConfigurationService } from './mfe-configuration.service';
-import { ApiResponse } from '@nestjs/swagger';
+import { ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
 import { CreateMFEConfigurationDto } from './dto/create-mfe-configuration-dto';
 import { MFEConfiguration } from './mfe-configuration.schema';
 import { UpdateMFEConfigurationDto } from './dto/update-mfe-configuration-dto';
 import { MFEConfigurationPresenter } from './presenter/mfe-configuration.presenter';
+import { AuthGuard } from '@axleresearch/auth-api';
 
 const MFE_ALREADY_EXISTS_ERROR = 'MFE Configuration already exists';
 const MFE_NOT_FOUND_ERROR = 'MFE Configuration not found;';
@@ -24,6 +26,9 @@ export class MFEConfigurationController {
   constructor(
     private readonly mfeConfigurationService: MFEConfigurationService
   ) {}
+
+  @UseGuards(AuthGuard)
+  @ApiBearerAuth()
   @ApiResponse({
     status: 201,
     description: MFE_CREATED,
@@ -70,6 +75,8 @@ export class MFEConfigurationController {
     return new MFEConfigurationPresenter(data);
   }
 
+  @UseGuards(AuthGuard)
+  @ApiBearerAuth()
   @ApiResponse({
     status: 200,
     description: MFE_SUCCEES,
@@ -84,6 +91,8 @@ export class MFEConfigurationController {
     await this.mfeConfigurationService.update(code, updateRemoteModuleDto);
   }
 
+  @UseGuards(AuthGuard)
+  @ApiBearerAuth()
   @ApiResponse({
     status: 200,
     description: MFE_SUCCEES,

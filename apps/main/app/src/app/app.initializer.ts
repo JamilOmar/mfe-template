@@ -3,7 +3,7 @@ import { firstValueFrom } from 'rxjs';
 import { Config, ConfigService, EventService } from '@axleresearch/base-ui';
 import { setRemoteDefinitions } from '@nx/angular/mf';
 import { ConfigVars, RemoteModulesEndpoint } from './utils/constants';
-import { MFEConfiguration } from './mfe-configuration/types';
+import { MFEConfiguration } from './types';
 export const EventKeys = {
   RemoteApps: 'remoteApps',
 };
