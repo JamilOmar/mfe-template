@@ -23,7 +23,7 @@ export const appRoutes: Route[] = [
     component: WebComponentWrapper,
     data: {
       type: 'script',
-      remoteEntry: 'http://localhost:4202/remoteEntry.js',
+      remoteEntry: 'http://localhost:4203/remoteEntry.js',
       remoteName: 'reactChild',
       exposedModule: './web-components',
       elementName: 'child-react-element',
@@ -36,15 +36,6 @@ export const appRoutes: Route[] = [
         type: 'module',
         remoteEntry: 'http://localhost:4201/remoteEntry.mjs',
         exposedModule: './ExternalModule',
-      }).then((m) => m.RemoteEntryModule),
-  },
-  {
-    path: 'external-feed',
-    loadChildren: () =>
-      loadRemoteModule({
-        type: 'module',
-        remoteEntry: 'http://localhost:4202/remoteEntry.mjs',
-        exposedModule: './ExternalFeedModule',
       }).then((m) => m.RemoteEntryModule),
   },
   {
