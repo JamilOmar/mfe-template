@@ -1,38 +1,37 @@
 {
   "name": "base-ui",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
   "sourceRoot": "libs/base-ui/src",
   "prefix": "base-ui",
   "tags": [],
-  "projectType": "library",
   "targets": {
     "build": {
       "executor": "@nx/angular:package",
-      "outputs": ["{options.outputPath}"],
+      "outputs": ["{workspaceRoot}/dist/libs/base-ui"],
       "options": {
-        "outputPath": "dist/libs/base-ui",
-        "tsConfig": "libs/base-ui/tsconfig.lib.json",
-        "packageJson": "libs/base-ui/package.json",
-        "main": "libs/base-ui/src/index.ts"
-      }
+        "project": "libs/base-ui/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/base-ui/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/base-ui/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "outputs": ["{workspaceRoot}/coverage/libs/base-ui"],
       "options": {
         "jestConfig": "libs/base-ui/jest.config.ts",
         "passWithNoTests": true
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
       }
     },
     "lint": {
       "executor": "@nx/linter:eslint",
-      "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": ["libs/base-ui/**/*.ts", "libs/base-ui/**/*.html"]
       }
