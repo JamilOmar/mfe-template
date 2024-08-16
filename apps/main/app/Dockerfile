@@ -10,6 +10,7 @@ RUN npm install -g pnpm@9
 RUN pnpm install --frozen-lockfile
 RUN pnpm nx run main-app:build --base-href /demo-app/
 
+
 # Build Stage 2
 # This build takes the production build from staging build
 FROM ghcr.io/jamilomar/docker-base-web:latest
