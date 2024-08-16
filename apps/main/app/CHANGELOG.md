@@ -1,5 +1,11 @@
 # @jamilomar/main-app
 
+## 0.0.4
+
+### Patch Changes
+
+- 0d543be: added new versions
+
 ## 0.0.3
 
 ### Patch Changes
