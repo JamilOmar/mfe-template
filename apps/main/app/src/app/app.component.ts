@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MFEConfiguration } from './types';
-import { ConfigService, EventService } from '@axleresearch/base-ui';
+import { ConfigService, EventService } from '@jamilomar/base-ui';
 import { DynamicAppLoaderService } from './services/dynamic-app-loader.service';
 import { EventKeys } from './app.initializer';
 import { ConfigVars } from './utils/constants';

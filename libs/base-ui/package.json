@@ -1,5 +1,5 @@
 {
-  "name": "@axleresearch/base-ui",
+  "name": "@jamilomar/base-ui",
   "version": "0.0.1",
   "private": true,
   "peerDependencies": {
@@ -15,10 +15,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/axleresearch/base-ui.git",
+    "url": "https://github.com/jamilomar/mfe-template.git",
     "directory": "libs/base-ui"
   },
   "publishConfig": {
-    "@axleresearch:registry": "https://npm.pkg.github.com"
+    "@jamilomar:registry": "https://npm.pkg.github.com"
   }
 }

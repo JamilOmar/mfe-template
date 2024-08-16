@@ -63,5 +63,5 @@ jobs:
           fail_ci_if_error: true
           verbose: true
           token: ${{ secrets.CODECOV_TOKEN }}
-          slug: axleresearch/main
+          slug: jamilomar/main
           directory: ./coverage/apps/

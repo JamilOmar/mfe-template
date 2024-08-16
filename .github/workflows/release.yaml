@@ -6,7 +6,7 @@ on:
 env:
   HUSKY: 0
   PROJECT_NAME: main
-  REPOSITORY: axleresearch
+  REPOSITORY: jamilomar
 jobs:
   packaging:
     runs-on: ubuntu-latest

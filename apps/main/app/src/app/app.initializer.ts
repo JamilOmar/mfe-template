@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
-import { Config, ConfigService, EventService } from '@axleresearch/base-ui';
+import { Config, ConfigService, EventService } from '@jamilomar/base-ui';
 import { setRemoteDefinitions } from '@nx/angular/mf';
 import { ConfigVars, RemoteModulesEndpoint } from './utils/constants';
 import { MFEConfiguration } from './types';

@@ -1,5 +1,5 @@
 {
-  "name": "@axleresearch/auth-api",
+  "name": "@jamilomar/auth-api",
   "version": "0.0.1",
   "type": "commonjs",
   "private": true,
@@ -10,10 +10,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/axleresearch/mfe-template",
+    "url": "https://github.com/jamilomar/mfe-template.git",
     "directory": "libs/auth-api"
   },
   "publishConfig": {
-    "@axleresearch:registry": "https://npm.pkg.github.com"
+    "@jamilomar:registry": "https://npm.pkg.github.com"
   }
 }

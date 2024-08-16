@@ -1,11 +1,11 @@
 {
-  "name": "@axleresearch/demo-app",
+  "name": "@jamilomar/main-app",
   "version": "1.0.4",
   "type": "commonjs",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/axleresearch/demo.git",
+    "url": "https://github.com/jamilomar/mfe-template.git",
     "directory": "apps/main/app"
   },
   "publishConfig": {

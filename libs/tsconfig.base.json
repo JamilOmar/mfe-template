@@ -19,10 +19,10 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@axleresearch/auth-api": [
+      "@jamilomar/auth-api": [
         "libs/auth-api/src/index.ts"
       ],
-      "@axleresearch/base-ui": [
+      "@jamilomar/base-ui": [
         "libs/base-ui/src/index.ts"
       ],
     }

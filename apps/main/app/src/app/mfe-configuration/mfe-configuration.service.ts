@@ -8,7 +8,7 @@ import {
   UpdateMFEConfigurationDto,
 } from '../types';
 import { ConfigVars, RemoteModulesEndpoint } from '../utils/constants';
-import { ConfigService } from '@axleresearch/base-ui';
+import { ConfigService } from '@jamilomar/base-ui';
 
 export const SERVICE_CONFIG = new InjectionToken<ServiceConfig>(
   'ServiceConfig'

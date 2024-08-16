@@ -3,7 +3,7 @@ import { AppComponent } from './app.component';
 import { NxWelcomeComponent } from './nx-welcome.component';
 import { AuthConfigModule } from './auth/auth-config.module';
 import { RouterTestingModule } from '@angular/router/testing';
-import { BaseUIModule, EventService } from '@axleresearch/base-ui';
+import { BaseUIModule, EventService } from '@jamilomar/base-ui';
 import { DynamicAppLoaderService } from './services/dynamic-app-loader.service';
 import { MFEConfiguration } from './types';
 

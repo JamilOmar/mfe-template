@@ -5,7 +5,7 @@ import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import configuration from './../config/configuration';
 import { MFEConfigurationModule } from './mfe/mfe-configuration.module';
-import { AuthApiModule } from '@axleresearch/auth-api';
+import { AuthApiModule } from '@jamilomar/auth-api';
 @Module({
   imports: [
     ConfigModule.forRoot({

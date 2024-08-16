@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { ConfigService } from '@axleresearch/base-ui';
+import { ConfigService } from '@jamilomar/base-ui';
 import {
   AuthModule,
   OpenIdConfiguration,

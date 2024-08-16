@@ -14,7 +14,7 @@ import { CreateMFEConfigurationDto } from './dto/create-mfe-configuration-dto';
 import { MFEConfiguration } from './mfe-configuration.schema';
 import { UpdateMFEConfigurationDto } from './dto/update-mfe-configuration-dto';
 import { MFEConfigurationPresenter } from './presenter/mfe-configuration.presenter';
-import { AuthGuard } from '@axleresearch/auth-api';
+import { AuthGuard } from '@jamilomar/auth-api';
 
 const MFE_ALREADY_EXISTS_ERROR = 'MFE Configuration already exists';
 const MFE_NOT_FOUND_ERROR = 'MFE Configuration not found;';

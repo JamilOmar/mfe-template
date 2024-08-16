@@ -183,12 +183,12 @@ https://www.angulararchitects.io/en/blog/micro-frontends-with-modern-angular-par
 For the deployment, you need to uncomment the deployment actions and copy the deployment scripts from either hits or smartirb. Also, you would need to contact the DevOps team to create a cluster ( eks or aks) 
 
 ```sh
-https://github.com/AxleResearch/mfe-template/blob/main/.github/workflows/release.yaml#L65
+https://github.com/jamilomar/mfe-template/blob/main/.github/workflows/release.yaml#L65
 ```
 
 Add access to the repo to consume the hits-docker-base-web ( you could create a new base image)
 ```sh
- https://github.com/orgs/AxleResearch/packages/container/hits-docker-base-web/settings
+ https://github.com/orgs/jamilomar/packages/container/hits-docker-base-web/settings
  ```
 Verify the name of the packages in each of the library packages, use unique names, and set the `private` flag to false ( this will allow the package to be deployable) 
 For consuming the libraries, you will need to provide access to each of the packages at the package inside the repo. Each client must set up the GITHUB_TOKEN var with its own PAT Token. 

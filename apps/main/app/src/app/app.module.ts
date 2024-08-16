@@ -9,7 +9,7 @@ import {
   HttpClient,
   HttpClientModule,
 } from '@angular/common/http';
-import { BaseUIModule, ConfigService } from '@axleresearch/base-ui';
+import { BaseUIModule, ConfigService } from '@jamilomar/base-ui';
 import { initializer } from './app.initializer';
 import { AuthConfigModule } from './auth/auth-config.module';
 import { AuthInterceptorService } from './common/interceptors/auth.interceptor';

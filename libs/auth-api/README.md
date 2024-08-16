@@ -22,7 +22,7 @@ Auth-Api is a NestJs library token validation of:
 To begin using it, we first install the required dependency.
 
 ```sh
-npm i --save @axleresearch/auth-api
+npm i --save @jamilomar/auth-api
 ```
 
 ## Getting started
@@ -31,7 +31,7 @@ Once the installation process is complete, to use the auth-api, first import aut
 
 ```ts
 import { Module } from '@nestjs/common';
-import { AuthApiModule } from '@axleresearch/auth-api';
+import { AuthApiModule } from '@jamilomar/auth-api';
 @Module({
   imports: [
     AuthApiModule.forRoot({
@@ -55,7 +55,7 @@ or
 ```ts
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { AuthApiModule } from '@axleresearch/auth-api';
+import { AuthApiModule } from '@jamilomar/auth-api';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -96,7 +96,7 @@ Then, import the Guard and Decorators into your controller (`users.controller`).
 
 ```ts
 import { Controller, Get, UseGuards } from '@nestjs/common';
-import { AuthGuard, Auth, CurrentUser } from '@axleresearch/auth-api';
+import { AuthGuard, Auth, CurrentUser } from '@jamilomar/auth-api';
 
 @UseGuards(AuthGuard)
 @Controller()
@@ -119,7 +119,7 @@ Alternatively, if you prefer to use Auth without scope, you can leave it blank.
 
 ```ts
 import { Controller, Get, UseGuards } from '@nestjs/common';
-import { AuthGuard, Auth, CurrentUser } from '@axleresearch/auth-api';
+import { AuthGuard, Auth, CurrentUser } from '@jamilomar/auth-api';
 @UseGuards(TokenGuard)
 @Controller()
 export class UsersController {
