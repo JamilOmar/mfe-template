@@ -1,5 +1,11 @@
 # @jamilomar/main-app
 
+## 0.0.3
+
+### Patch Changes
+
+- 6a68748: forced release for pushing changes to github
+
 ## 0.0.2
 
 ### Patch Changes
