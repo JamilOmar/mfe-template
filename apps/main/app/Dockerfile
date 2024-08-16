@@ -6,7 +6,7 @@ ARG SOURCE_FOLDER="./"
 ARG GITHUB_TOKEN
 WORKDIR /usr/src
 COPY ${SOURCE_FOLDER} .
-RUN npm install -g pnpm@7
+RUN npm install -g pnpm@9
 RUN pnpm install --frozen-lockfile
 RUN pnpm nx run main-app:build --base-href /demo-app/
 

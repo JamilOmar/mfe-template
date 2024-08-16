@@ -5,7 +5,7 @@ ARG SOURCE_FOLDER="./"
 WORKDIR /usr/src
 
 
-RUN npm install -g pnpm@8
+RUN npm install -g pnpm@9
 COPY ${SOURCE_FOLDER}pnpm-lock.yaml .
 COPY ${SOURCE_FOLDER}pnpm-workspace.yaml .
 COPY ${SOURCE_FOLDER}package.json .
