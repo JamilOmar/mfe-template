@@ -1,5 +1,11 @@
 # @jamilomar/main-app
 
+## 0.0.6
+
+### Patch Changes
+
+- e53fe36: release forced
+
 ## 0.0.5
 
 ### Patch Changes
