@@ -11,7 +11,6 @@ RUN pnpm install --frozen-lockfile
 RUN pnpm nx run main-app:build --base-href /demo-app/
 
 # Build Stage 2
-
 # This build takes the production build from staging build
 FROM ghcr.io/jamilomar/hits-docker-base-web:latest
 RUN rm /etc/nginx/conf.d/default.conf
