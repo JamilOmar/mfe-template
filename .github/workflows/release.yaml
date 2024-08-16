@@ -124,7 +124,7 @@ jobs:
       - name: Publish Artifacts for Api
         run: |
           echo "Using version: ${{ needs.packaging.outputs.mainApiVersion }}"
-          docker build -t ghcr.io/${{ env.REPOSITORY }}/${{ env.PROJECT_NAME }}-api -t ghcr.io/${{ env.REPOSITORY }}/${{ env.PROJECT_NAME }}-api:${{ needs.packaging.outputs.mainApiVersion }} --build-arg GITHUB_TOKEN=${{ env.GITHUB_TOKEN }} -f ./packages/main-api/Dockerfile .
+          docker build -t ghcr.io/${{ env.REPOSITORY }}/${{ env.PROJECT_NAME }}-api -t ghcr.io/${{ env.REPOSITORY }}/${{ env.PROJECT_NAME }}-api:${{ needs.packaging.outputs.mainApiVersion }} --build-arg GITHUB_TOKEN=${{ env.GITHUB_TOKEN }} -f ./apps/main/api/Dockerfile .
           docker push ghcr.io/${{ env.REPOSITORY }}/${{ env.PROJECT_NAME }}-api --all-tags
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -150,7 +150,7 @@ jobs:
       - name: Publish Artifacts for App
         run: |
           echo "Using version: ${{ needs.packaging.outputs.mainAppVersion }}"
-          docker build -t ghcr.io/${{ env.REPOSITORY }}/${{ env.PROJECT_NAME }}-app -t ghcr.io/${{ env.REPOSITORY }}/${{ env.PROJECT_NAME }}-app:${{ needs.packaging.outputs.mainAppVersion }} --build-arg GITHUB_TOKEN=${{ env.GITHUB_TOKEN }} -f ./packages/main-app/Dockerfile .
+          docker build -t ghcr.io/${{ env.REPOSITORY }}/${{ env.PROJECT_NAME }}-app -t ghcr.io/${{ env.REPOSITORY }}/${{ env.PROJECT_NAME }}-app:${{ needs.packaging.outputs.mainAppVersion }} --build-arg GITHUB_TOKEN=${{ env.GITHUB_TOKEN }} -f ./apps/main/app/Dockerfile .
           docker push ghcr.io/${{ env.REPOSITORY }}/${{ env.PROJECT_NAME }}-app --all-tags
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
