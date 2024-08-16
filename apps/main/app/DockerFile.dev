@@ -3,7 +3,6 @@ FROM node:18-alpine AS appbuild
 ARG SOURCE_FOLDER="./"
 WORKDIR /usr/src
 
-
 RUN npm install -g pnpm@9
 COPY ${SOURCE_FOLDER}pnpm-lock.yaml .
 COPY ${SOURCE_FOLDER}pnpm-workspace.yaml .

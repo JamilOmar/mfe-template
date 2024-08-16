@@ -13,7 +13,6 @@ RUN npm install -g pnpm@9
 RUN pnpm install --frozen-lockfile
 RUN pnpm nx run main-api:build
 
-
 # Build Stage 2
 # This build takes the production build from staging build
 #

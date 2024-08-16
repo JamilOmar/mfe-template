@@ -12,7 +12,7 @@ RUN pnpm nx run main-app:build --base-href /demo-app/
 
 # Build Stage 2
 # This build takes the production build from staging build
-FROM ghcr.io/jamilomar/hits-docker-base-web:latest
+FROM ghcr.io/jamilomar/docker-base-web:latest
 RUN rm /etc/nginx/conf.d/default.conf
 COPY --from=appbuild /usr/src/apps/main/app/app-nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=appbuild /usr/src/apps/main/app/app.config.js /var/www/app/app.config.js
