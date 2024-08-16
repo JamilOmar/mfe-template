@@ -62,129 +62,98 @@ jobs:
       - name: Build Project
         run: |
           pnpm nx run-many --target=build --all --parallel 4
-  #     - name: Modify Workspace File
-  #       # only changing libs to dist to deploy this packages in the package registry
-  #       # no packages to be deployed should be under apps, otherwise the seed would also
-  #       # need to change the apps folder
-  #       run: sed -e "s|'libs\/|'dist/|" pnpm-workspace.yaml > pnpm-new.yaml && mv pnpm-new.yaml pnpm-workspace.yaml
+      - name: Modify Workspace File
+        run: sed -e "s|'libs\/|'dist/|" pnpm-workspace.yaml > pnpm-new.yaml && mv pnpm-new.yaml pnpm-workspace.yaml
 
-  #     - name: Create and Publish versions
-  #       id: changesets
-  #       uses: changesets/action@v1.4.1
-  #       with:
-  #         commit: 'chore: update versions'
-  #         title: 'chore: update versions'
-  #       env:
-  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create and Publish versions
+        id: changesets
+        uses: changesets/action@v1.4.1
+        with:
+          commit: 'chore: update versions'
+          title: 'chore: update versions'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  #     - name: Release Changesets
-  #       id: release-changesets
-  #       if: steps.changesets.outputs.hasChangesets == 'false'
-  #       run: |
-  #         pnpm release:ci
-  #         echo "Modify Workspace File Back"
-  #         sed -e "s|'dist\/|'libs/|" pnpm-workspace.yaml > pnpm-new.yaml && mv pnpm-new.yaml pnpm-workspace.yaml
-  #         echo mainApiVersion="" >>$GITHUB_OUTPUT
-  #         echo mainAppVersion="" >>$GITHUB_OUTPUT
-  #         pnpm set-versions
+      - name: Release Changesets
+        id: release-changesets
+        if: steps.changesets.outputs.hasChangesets == 'false'
+        run: |
+          pnpm release:ci
+          echo "Modify Workspace File Back"
+          sed -e "s|'dist\/|'libs/|" pnpm-workspace.yaml > pnpm-new.yaml && mv pnpm-new.yaml pnpm-workspace.yaml
+          echo mainApiVersion="" >>$GITHUB_OUTPUT
+          echo mainAppVersion="" >>$GITHUB_OUTPUT
+          pnpm set-versions
 
-  #         if [ -f MAIN_API_VERSION ]; then
-  #           echo "mainApiVersion=$(cat MAIN_API_VERSION)" >>$GITHUB_OUTPUT
-  #           rm MAIN_API_VERSION
-  #         else
-  #           echo mainApiVersion="" >>$GITHUB_OUTPUT
-  #         fi
-  #         if [ -f MAIN_APP_VERSION ]; then
-  #           echo "mainAppVersion=$(cat MAIN_APP_VERSION)" >>$GITHUB_OUTPUT
-  #           rm MAIN_APP_VERSION
-  #         else
-  #           echo mainAppVersion="" >>$GITHUB_OUTPUT
-  #         fi
+          if [ -f MAIN_API_VERSION ]; then
+            echo "mainApiVersion=$(cat MAIN_API_VERSION)" >>$GITHUB_OUTPUT
+            rm MAIN_API_VERSION
+          else
+            echo mainApiVersion="" >>$GITHUB_OUTPUT
+          fi
+          if [ -f MAIN_APP_VERSION ]; then
+            echo "mainAppVersion=$(cat MAIN_APP_VERSION)" >>$GITHUB_OUTPUT
+            rm MAIN_APP_VERSION
+          else
+            echo mainAppVersion="" >>$GITHUB_OUTPUT
+          fi
 
-  #       env:
-  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  #   outputs:
-  #     mainApiVersion: ${{ steps.release-changesets.outputs.mainApiVersion }}
-  #     mainAppVersion: ${{ steps.release-changesets.outputs.mainAppVersion }}
+    outputs:
+      mainApiVersion: ${{ steps.release-changesets.outputs.mainApiVersion }}
+      mainAppVersion: ${{ steps.release-changesets.outputs.mainAppVersion }}
 
-  # publish-artifacts-for-api:
-  #   needs: [packaging]
-  #   if: needs.packaging.outputs.mainApiVersion != ''
-  #   runs-on: ubuntu-latest
-  #   defaults:
-  #     run:
-  #       working-directory: ${{ github.workspace }}
-  #   steps:
-  #     - name: Install helm charts
-  #       uses: azure/setup-helm@v3
-  #       with:
-  #         token: ${{ secrets.GITHUB_TOKEN }}
+  publish-artifacts-for-api:
+    needs: [packaging]
+    if: needs.packaging.outputs.mainApiVersion != ''
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ github.workspace }}
+    steps:
 
-  #     - name: Set Docker Login to ghcr.io
-  #       run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
+      - name: Set Docker Login to ghcr.io
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
 
-  #     - uses: actions/checkout@v3.5.0
-  #       with:
-  #         fetch-depth: 0
+      - uses: actions/checkout@v3.5.0
+        with:
+          fetch-depth: 0
 
-  #     - name: Publish Artifacts for Api
-  #       run: |
-  #         echo "Using version: ${{ needs.packaging.outputs.mainApiVersion }}"
-  #         docker build -t ghcr.io/${{ env.REPOSITORY }}/${{ env.PROJECT_NAME }}-api -t ghcr.io/${{ env.REPOSITORY }}/${{ env.PROJECT_NAME }}-api:${{ needs.packaging.outputs.mainApiVersion }} --build-arg GITHUB_TOKEN=${{ env.GITHUB_TOKEN }} -f ./packages/main-api/Dockerfile .
-  #         docker push ghcr.io/${{ env.REPOSITORY }}/${{ env.PROJECT_NAME }}-api --all-tags
-  #         helm package ./packages/main-api/helm/ --version=${{ needs.packaging.outputs.mainApiVersion }} --app-version=${{ needs.packaging.outputs.mainApiVersion }}
-  #         helm push ${{ env.PROJECT_NAME }}-api-chart-${{ needs.packaging.outputs.mainApiVersion }}.tgz  oci://ghcr.io/${{ env.REPOSITORY }}
-  #       env:
-  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Publish Artifacts for Api
+        run: |
+          echo "Using version: ${{ needs.packaging.outputs.mainApiVersion }}"
+          docker build -t ghcr.io/${{ env.REPOSITORY }}/${{ env.PROJECT_NAME }}-api -t ghcr.io/${{ env.REPOSITORY }}/${{ env.PROJECT_NAME }}-api:${{ needs.packaging.outputs.mainApiVersion }} --build-arg GITHUB_TOKEN=${{ env.GITHUB_TOKEN }} -f ./packages/main-api/Dockerfile .
+          docker push ghcr.io/${{ env.REPOSITORY }}/${{ env.PROJECT_NAME }}-api --all-tags
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  #   outputs:
-  #     mainApiVersion: ${{ needs.packaging.outputs.mainApiVersion }}
+    outputs:
+      mainApiVersion: ${{ needs.packaging.outputs.mainApiVersion }}
 
-  # publish-artifacts-for-app:
-  #   needs: [packaging]
-  #   if: needs.packaging.outputs.mainAppVersion != ''
-  #   runs-on: ubuntu-latest
-  #   defaults:
-  #     run:
-  #       working-directory: ${{ github.workspace }}
-  #   steps:
-  #     - name: Install helm charts
-  #       uses: azure/setup-helm@v3
-  #       with:
-  #         token: ${{ secrets.GITHUB_TOKEN }}
+  publish-artifacts-for-app:
+    needs: [packaging]
+    if: needs.packaging.outputs.mainAppVersion != ''
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ github.workspace }}
+    steps:
+      - name: Set Docker Login to ghcr.io
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
 
-  #     - name: Set Docker Login to ghcr.io
-  #       run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
+      - uses: actions/checkout@v3.5.0
+        with:
+          fetch-depth: 0
 
-  #     - uses: actions/checkout@v3.5.0
-  #       with:
-  #         fetch-depth: 0
+      - name: Publish Artifacts for App
+        run: |
+          echo "Using version: ${{ needs.packaging.outputs.mainAppVersion }}"
+          docker build -t ghcr.io/${{ env.REPOSITORY }}/${{ env.PROJECT_NAME }}-app -t ghcr.io/${{ env.REPOSITORY }}/${{ env.PROJECT_NAME }}-app:${{ needs.packaging.outputs.mainAppVersion }} --build-arg GITHUB_TOKEN=${{ env.GITHUB_TOKEN }} -f ./packages/main-app/Dockerfile .
+          docker push ghcr.io/${{ env.REPOSITORY }}/${{ env.PROJECT_NAME }}-app --all-tags
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  #     - name: Publish Artifacts for App
-  #       run: |
-  #         echo "Using version: ${{ needs.packaging.outputs.mainAppVersion }}"
-  #         docker build -t ghcr.io/${{ env.REPOSITORY }}/${{ env.PROJECT_NAME }}-app -t ghcr.io/${{ env.REPOSITORY }}/${{ env.PROJECT_NAME }}-app:${{ needs.packaging.outputs.mainAppVersion }} --build-arg GITHUB_TOKEN=${{ env.GITHUB_TOKEN }} -f ./packages/main-app/Dockerfile .
-  #         docker push ghcr.io/${{ env.REPOSITORY }}/${{ env.PROJECT_NAME }}-app --all-tags
-  #         helm package ./packages/main-app/helm/ --version=${{ needs.packaging.outputs.mainAppVersion }} --app-version=${{ needs.packaging.outputs.mainAppVersion }}
-  #         helm push ${{ env.PROJECT_NAME }}-app-chart-${{ needs.packaging.outputs.mainAppVersion }}.tgz  oci://ghcr.io/${{ env.REPOSITORY }}
-  #       env:
-  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  #   outputs:
-  #     mainAppVersion: ${{ needs.packaging.outputs.mainAppVersion }}
-
-  # call-deploy-api-aws-wf:
-  #   needs: [publish-artifacts-for-api]
-  #   if: needs.publish-artifacts-for-api.outputs.mainApiVersion != ''
-  #   uses: ./.github/workflows/deploy-api-aws.yaml
-  #   with:
-  #     version: ${{ needs.publish-artifacts-for-api.outputs.mainApiVersion }}
-  #   secrets: inherit
-
-  # call-deploy-app-aws-wf:
-  #   needs: [publish-artifacts-for-app]
-  #   if: needs.publish-artifacts-for-app.outputs.mainAppVersion != ''
-  #   uses: ./.github/workflows/deploy-app-aws.yaml
-  #   with:
-  #     version: ${{ needs.publish-artifacts-for-app.outputs.mainAppVersion }}
-  #   secrets: inherit
+    outputs:
+      mainAppVersion: ${{ needs.packaging.outputs.mainAppVersion }}
